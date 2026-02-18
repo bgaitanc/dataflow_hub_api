@@ -1,0 +1,7 @@
+﻿services:
+  dataflowhub.api:
+    image: dataflowhub.api
+    build:
+      context: .
+      dockerfile: DataFlowHub.Api/Dockerfile
+

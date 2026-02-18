@@ -1,6 +1,44 @@
-@DataFlowHub.Api_HostAddress = http://localhost:5285
+# @name api/auth/register
+POST {{DataFlowHub_HostAddress}}/api/auth/register
+Content-Type: application/json
 
-GET {{DataFlowHub.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+{
+  "firstName": "Brian Antonio",
+  "lastName": "Gaitán Corea",
+  "email": "bgaitan2@test.com",
+  "password": "mortadela01"
+}
+
+###
+
+# @name api/auth/login
+POST {{DataFlowHub_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "bgaitan2@test.com",
+  "password": "mortadela01"
+}
+
+> {%
+    client.global.set("auth_token", response.body.data.token);
+    client.global.set("refresh_token", response.body.data.refreshToken);
+%}
+
+###
+
+# @name api/auth/refresh-token
+POST {{DataFlowHub_HostAddress}}/api/auth/refresh-token
+Content-Type: application/json
+
+{
+  "token": "{{auth_token}}",
+  "refreshToken": "{{refresh_token}}"
+}
+
+> {%
+    client.global.set("auth_token", response.body.data.token);
+    client.global.set("refresh_token", response.body.data.refreshToken);
+%}
 
 ###
