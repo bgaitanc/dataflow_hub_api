@@ -6,6 +6,7 @@ Content-Type: application/json
   "firstName": "Brian Antonio",
   "lastName": "Gaitán Corea",
   "email": "bgaitan2@test.com",
+  "userName": "bagc",
   "password": "mortadela01"
 }
 
@@ -16,7 +17,7 @@ POST {{DataFlowHub_HostAddress}}/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "bgaitan2@test.com",
+  "userName": "bagc",
   "password": "mortadela01"
 }
 
