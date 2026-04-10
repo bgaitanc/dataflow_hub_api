@@ -22,12 +22,12 @@ public class AuthService(
     {
         var emailExists = await userManager.FindByEmailAsync(registerDto.Email);
         if (emailExists != null)
-            throw new DataFlowHubException(HttpStatusCode.PreconditionFailed,
+            throw new DomainException(
                 "El correo electrónico ya está registrado.");
 
         var userNameExists = await userManager.FindByNameAsync(registerDto.UserName);
         if (userNameExists != null)
-            throw new DataFlowHubException(HttpStatusCode.PreconditionFailed,
+            throw new DomainException(
                 "El nombre de usuario ya está registrado.");
 
         var user = new ApplicationUser
@@ -43,7 +43,7 @@ public class AuthService(
         if (!result.Succeeded)
         {
             var errors = string.Join(", ", result.Errors.Select(e => e.Description));
-            throw new DataFlowHubException(HttpStatusCode.PreconditionFailed, $"Error al registrar usuario: {errors}");
+            throw new DomainException($"Error al registrar usuario: {errors}");
         }
 
         await userManager.AddToRoleAsync(user, "Student");
@@ -117,7 +117,7 @@ public class AuthService(
         var secretKey = jwtSettings["SecretKey"];
 
         if (string.IsNullOrEmpty(secretKey))
-            throw new DataFlowHubException(HttpStatusCode.BadRequest, "La clave secreta JWT no está configurada.");
+            throw new DomainException("La clave secreta JWT no está configurada.");
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

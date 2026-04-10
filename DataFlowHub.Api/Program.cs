@@ -2,6 +2,8 @@ using System.Reflection;
 using System.Text;
 using DataFlowHub.Application.Services.Implementation;
 using DataFlowHub.Application.Services.Interfaces;
+using DataFlowHub.Domain.Repositories.Interfaces;
+using DataFlowHub.Infrastructure.Repositories.Implementation;
 using DataFlowHub.Domain.Entities.Enums;
 using DataFlowHub.Domain.Entities.Identity;
 using DataFlowHub.Infrastructure.Database;
@@ -78,6 +80,10 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
 
 builder.Services.AddCors(options =>
 {

@@ -63,3 +63,9 @@ The solution is divided into the following layers:
 - Use `BaseFilterDto` as a base for filter DTOs.
 - Repositories should implement a `GetPagedAsync` method that returns a tuple `(IEnumerable<T> Items, int TotalCount)`.
 - Services should return `PagedResultDto<T>`.
+
+### 9. Exception Handling
+- Use custom exceptions located in `DataFlowHub.Domain.Exceptions` for business logic and data access errors.
+- **NotFoundException**: Use when an entity is not found in the database. It returns a 404 Not Found status.
+- **DomainException**: Use for business rule violations. It returns a 400 Bad Request status.
+- All exceptions thrown within `ExecuteServiceAsync` (in controllers) are automatically caught and formatted into a standard `DataFlowHubGenericResponse`.

@@ -43,3 +43,47 @@ Content-Type: application/json
 %}
 
 ###
+
+# @name api/student/create
+POST {{DataFlowHub_HostAddress}}/api/student
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "firstName": "Juan",
+  "lastName": "Perez",
+  "email": "juan.perez@test.com",
+  "password": "Password123!",
+  "studentCode": "ST001",
+  "dateOfBirth": "2000-01-01T00:00:00Z",
+  "address": "Calle Falsa 123"
+}
+
+###
+
+# @name api/student/get-paged
+GET {{DataFlowHub_HostAddress}}/api/student?pageNumber=1&pageSize=10
+Authorization: Bearer {{auth_token}}
+
+###
+
+# @name api/teacher/create
+POST {{DataFlowHub_HostAddress}}/api/teacher
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "firstName": "Maria",
+  "lastName": "Lopez",
+  "email": "maria.lopez@test.com",
+  "password": "Password123!",
+  "employeeNumber": "EMP001",
+  "specialization": "Matematicas",
+  "title": "Licenciada"
+}
+
+###
+
+# @name api/teacher/get-paged
+GET {{DataFlowHub_HostAddress}}/api/teacher?pageNumber=1&pageSize=10
+Authorization: Bearer {{auth_token}}

@@ -27,7 +27,6 @@ public class AuthController(IAuthService authService) : DataFlowHubControllerBas
     /// </returns>
     [HttpPost("register")]
     [ProducesResponseType(typeof(DataFlowHubGenericResponse<Guid>), (int)HttpStatusCode.Created)]
-    [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.PreconditionFailed)]
     [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<ActionResult<Guid>> Register([FromBody] RegisterDto registerDto)
     {
@@ -49,8 +48,8 @@ public class AuthController(IAuthService authService) : DataFlowHubControllerBas
     /// </returns>
     [HttpPost("login")]
     [ProducesResponseType(typeof(DataFlowHubGenericResponse<AuthResponseDto>), (int)HttpStatusCode.OK)]
-    [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.PreconditionFailed)]
     [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.Unauthorized)]
     public async Task<ActionResult<AuthResponseDto>> Login([FromBody] LoginDto loginDto)
     {
         return await ExecuteServiceAsync(async () => await authService.LoginAsync(loginDto));
@@ -69,8 +68,8 @@ public class AuthController(IAuthService authService) : DataFlowHubControllerBas
     /// </returns>
     [HttpPost("refresh-token")]
     [ProducesResponseType(typeof(DataFlowHubGenericResponse<AuthResponseDto>), (int)HttpStatusCode.OK)]
-    [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.PreconditionFailed)]
     [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(DataFlowHubGenericResponse), (int)HttpStatusCode.Unauthorized)]
     public async Task<ActionResult<AuthResponseDto>> RefreshToken([FromBody] RefreshTokenRequestDto request)
     {
         return await ExecuteServiceAsync(async () => await authService.RefreshTokenAsync(request));
