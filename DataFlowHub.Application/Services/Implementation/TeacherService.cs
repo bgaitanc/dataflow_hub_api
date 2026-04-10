@@ -77,7 +77,7 @@ public class TeacherService(
             throw new DomainException($"Error al crear usuario: {errors}");
         }
 
-        await userManager.AddToRoleAsync(user, "Teacher");
+        await userManager.AddToRoleAsync(user, ApplicationRoles.Teacher);
 
         var teacher = new Teacher
         {

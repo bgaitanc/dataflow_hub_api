@@ -87,3 +87,92 @@ Authorization: Bearer {{auth_token}}
 # @name api/teacher/get-paged
 GET {{DataFlowHub_HostAddress}}/api/teacher?pageNumber=1&pageSize=10
 Authorization: Bearer {{auth_token}}
+
+###
+# @name api/course/create
+POST {{DataFlowHub_HostAddress}}/api/course
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Matemáticas I",
+  "code": "MAT101",
+  "credits": 4,
+  "description": "Curso introductorio de matemáticas"
+}
+
+###
+# @name api/course/get-paged
+GET {{DataFlowHub_HostAddress}}/api/course?pageNumber=1&pageSize=10
+Authorization: Bearer {{auth_token}}
+
+###
+# @name api/academic-term/create
+POST {{DataFlowHub_HostAddress}}/api/academic-term
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Primer Semestre 2026",
+  "startDate": "2026-02-01T00:00:00Z",
+  "endDate": "2026-06-30T00:00:00Z",
+  "isCurrent": true
+}
+
+###
+# @name api/academic-term/get-paged
+GET {{DataFlowHub_HostAddress}}/api/academic-term?pageNumber=1&pageSize=10
+Authorization: Bearer {{auth_token}}
+
+###
+# @name api/class-group/create
+POST {{DataFlowHub_HostAddress}}/api/class-group
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "Grupo 1 - MAT101",
+  "maxCapacity": 30,
+  "courseId": "00000000-0000-0000-0000-000000000000",
+  "teacherId": "00000000-0000-0000-0000-000000000000",
+  "academicTermId": "00000000-0000-0000-0000-000000000000"
+}
+
+###
+# @name api/class-group/get-paged
+GET {{DataFlowHub_HostAddress}}/api/class-group?pageNumber=1&pageSize=10
+Authorization: Bearer {{auth_token}}
+
+###
+# @name api/enrollment/create
+POST {{DataFlowHub_HostAddress}}/api/enrollment
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "studentId": "00000000-0000-0000-0000-000000000000",
+  "classGroupId": "00000000-0000-0000-0000-000000000000"
+}
+
+###
+# @name api/enrollment/get-paged
+GET {{DataFlowHub_HostAddress}}/api/enrollment?pageNumber=1&pageSize=10
+Authorization: Bearer {{auth_token}}
+
+###
+# @name api/grade/create
+POST {{DataFlowHub_HostAddress}}/api/grade
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "enrollmentId": "00000000-0000-0000-0000-000000000000",
+  "assessmentName": "Primer Parcial",
+  "score": 85.5,
+  "weightPercentage": 30.0
+}
+
+###
+# @name api/grade/get-paged
+GET {{DataFlowHub_HostAddress}}/api/grade?pageNumber=1&pageSize=10
+Authorization: Bearer {{auth_token}}

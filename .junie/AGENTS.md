@@ -33,18 +33,23 @@ The solution is divided into the following layers:
 ### 1. Code Style and Standards
 - Follow standard C# 15 and .NET naming conventions (PascalCase for classes/methods, camelCase for local variables).
 - Maintain consistency with the existing codebase patterns.
-- Ensure that any new domain entities or database changes are followed by creating an EF Core migration in `DataFlowHub.Infrastructure`.
+- Ensure that an EF Core migration is created in `DataFlowHub.Infrastructure` ONLY when a new entity is created, there are changes to domain entities (`DataFlowHub.Domain.Entities`), database configurations (`DataFlowHub.Infrastructure.Database.Configuration`), or seeders (`DataFlowHub.Infrastructure.Database.Seeder`).
 
 ### 2. Testing
 - Junie should run tests to check the correctness of the proposed solution when changes affect business logic or data access.
-- Tests can be run using the `run_test` tool, targeting `DataFlowHub.UnitTest.csproj` or specific namespaces.
-- Before submitting, ensure that all relevant tests in `DataFlowHub.UnitTest` pass.
+- Tests can be run using the `run_test` tool, targeting `DataFlowHub.Tests.csproj` or specific namespaces.
+- Before submitting, ensure that all relevant tests in `DataFlowHub.Tests` pass.
 
 ### 3. Building the Project
 - Junie should verify that the project builds after making changes, especially if they involve API signatures or dependency injection updates in `Program.cs`.
 
 ### 4. Database Migrations
-- When modifying entities in `DataFlowHub.Domain.Entities`, remember to add a migration in the `DataFlowHub.Infrastructure` project:
+- Create a migration in the `DataFlowHub.Infrastructure` project ONLY if:
+  - A new entity has been created.
+  - Domain entities in `DataFlowHub.Domain.Entities` have been modified.
+  - Database configurations in `DataFlowHub.Infrastructure.Database.Configuration` have been changed.
+  - Data seeders in `DataFlowHub.Infrastructure.Database.Seeder` have been added or modified.
+- Use the following command to add a migration:
   `dotnet ef migrations add <MigrationName> --project DataFlowHub.Infrastructure --startup-project DataFlowHub.Api`
 
 ### 5. Git Commits

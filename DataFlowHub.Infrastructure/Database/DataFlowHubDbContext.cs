@@ -92,17 +92,17 @@ public class DataFlowHubDbContext(DbContextOptions<DataFlowHubDbContext> options
         builder.Entity<IdentityRole<Guid>>().HasData(
             new IdentityRole<Guid>
             {
-                Id = Guid.Parse("8bc2bfc1-1e12-4b5f-a1ff-679b06b1996b"), Name = "Admin", NormalizedName = "ADMIN",
+                Id = Guid.Parse("8bc2bfc1-1e12-4b5f-a1ff-679b06b1996b"), Name = ApplicationRoles.Admin, NormalizedName = ApplicationRoles.Admin.ToUpper(),
                 ConcurrencyStamp = "c735af80-37c2-434b-9c50-c8f3c5fd1be2"
             },
             new IdentityRole<Guid>
             {
-                Id = Guid.Parse("15babe3a-44b5-4045-81b2-d1e4ef87ce32"), Name = "Teacher", NormalizedName = "TEACHER",
+                Id = Guid.Parse("15babe3a-44b5-4045-81b2-d1e4ef87ce32"), Name = ApplicationRoles.Teacher, NormalizedName = ApplicationRoles.Teacher.ToUpper(),
                 ConcurrencyStamp = "5150d7aa-213d-42a4-945e-5d60c96c6485"
             },
             new IdentityRole<Guid>
             {
-                Id = Guid.Parse("29026dd1-206d-4f54-849e-3aaa7422b07d"), Name = "Student", NormalizedName = "STUDENT",
+                Id = Guid.Parse("29026dd1-206d-4f54-849e-3aaa7422b07d"), Name = ApplicationRoles.Student, NormalizedName = ApplicationRoles.Student.ToUpper(),
                 ConcurrencyStamp = "361075c0-576b-4d9c-89da-b059ae14d863"
             }
         );

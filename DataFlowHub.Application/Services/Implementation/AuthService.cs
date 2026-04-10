@@ -46,7 +46,7 @@ public class AuthService(
             throw new DomainException($"Error al registrar usuario: {errors}");
         }
 
-        await userManager.AddToRoleAsync(user, "Student");
+        await userManager.AddToRoleAsync(user, ApplicationRoles.Student);
 
         return user.Id;
     }

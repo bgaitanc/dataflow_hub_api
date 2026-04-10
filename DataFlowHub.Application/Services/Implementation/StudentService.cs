@@ -79,7 +79,7 @@ public class StudentService(
             throw new DomainException($"Error al crear usuario: {errors}");
         }
 
-        await userManager.AddToRoleAsync(user, "Student");
+        await userManager.AddToRoleAsync(user, ApplicationRoles.Student);
 
         var student = new Student
         {
